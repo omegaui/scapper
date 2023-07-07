@@ -25,30 +25,31 @@ async function generateCSV(allUrls) {
 
     for (var i = 0; i < productLinks.length - threshold; i += threshold) {
         await sleep(getRandomServerRestTimeForCollection())
-        var urlStack = productLinks.slice(i, i + threshold);
-        accuracy += 1;
+        console.log("At Set: " + i + "->" + (i + threshold))
+        var urlStack = productLinks.slice(i, i + threshold)
+        accuracy += 1
         var stackAccuracy = 0;
         for (var x in urlStack) {
-            count++;
+            count++
             var fullUrl = urlStack[x]
-            console.log("Retrieving " + count + " ...")
+            console.log("Retrieving " + count + " ... " + fullUrl)
             var data = await getProductData(fullUrl);
             stackAccuracy++;
             try {
                 if (data == undefined) {
-                    accuracy--;
-                    stackAccuracy--;
+                    accuracy--
+                    stackAccuracy--
                     throw Error()
                 }
-                var dt = (data.props['initialProps']['pageProps']['initialData']['products']);
-                var categories = dt[0].attributes.productCategoriesHearchi.split("/");
-                categories = categories.slice(0, 3);
+                var dt = (data.props['initialProps']['pageProps']['initialData']['products'])
+                var categories = dt[0].attributes.productCategoriesHearchi.split("/")
+                categories = categories.slice(0, 3)
                 var cat0_arr;
                 var cat1_arr;
-                for (var i = 0; i < 3; i++) {
-                    cat0_arr = dt[0].attributes.categoriesHierarchy[0]["name_ar"];
-                    cat1_arr = dt[0].attributes.categoriesHierarchy[1]["name_ar"];
-                    cat2_arr = dt[0].attributes.categoriesHierarchy[2]["name_ar"];
+                for (var j = 0; j < 3; j++) {
+                    cat0_arr = dt[0].attributes.categoriesHierarchy[0]["name_ar"]
+                    cat1_arr = dt[0].attributes.categoriesHierarchy[1]["name_ar"]
+                    cat2_arr = dt[0].attributes.categoriesHierarchy[2]["name_ar"]
                 }
                 writeStream.write(`${dt[0].attributes.brandName}, ${dt[0].title}, ${dt[0].attributes.size}, ${dt[0].offers[0].stores[0].price.original.value}, ${dt[0].offers[0].stores[0].price.original.value}, "${dt[0].media[1].url}",${dt[0].attributes.storeId},${dt[0].attributes.productType},${dt[0].attributes.barCodes}, ${dt[0].attributes.name_ar},${categories[0]},${categories[1]},${categories[2]},${cat0_arr},${cat1_arr},${cat2_arr}\n`);
 
