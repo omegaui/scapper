@@ -1,0 +1,33 @@
+{
+    "name": "saudi_data",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "axios": "^0.21.1",
+      "body-parser": "^1.19.0",
+      "camaro": "^6.1.0",
+      "cheerio": "^1.0.0-rc.5",
+      "cors": "^2.8.5",
+      "ejs": "^3.1.6",
+      "express": "^4.17.1",
+      "javascript-barcode-reader": "^0.6.8",
+      "jsdom": "^16.6.0",
+      "nightmare": "^3.0.2",
+      "puppeteer-select": "^1.0.3",
+      "quagga": "^0.12.1",
+      "website-scraper": "^4.2.3",
+      "website-scraper-puppeteer": "^0.1.5",
+      "wsscraper": "0.0.1",
+      "x-ray": "^2.3.4",
+      "x-ray-scraper": "^3.0.6"
+    },
+    "devDependencies": {},
+    "description": ""
+  }
+  
